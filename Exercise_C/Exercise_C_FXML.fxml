@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Exercise_C.Exercise_C_FXMLController">
+   <children>
+      <TextField fx:id="width" layoutX="406.0" layoutY="110.0" onAction="#changeWidth" prefHeight="26.0" prefWidth="72.0" />
+      <TextField fx:id="hight" layoutX="541.0" layoutY="110.0" onAction="#changeHight" prefHeight="26.0" prefWidth="72.0" />
+      <ComboBox fx:id="ComboBox" layoutX="676.0" layoutY="110.0" onAction="#changeColor" prefHeight="26.0" prefWidth="102.0" />
+      <CheckBox layoutX="504.0" layoutY="182.0" mnemonicParsing="false" onAction="#stroke" text="Add Stroke" />
+      <RadioButton layoutX="475.0" layoutY="234.0" mnemonicParsing="false" onAction="#stroke1" text="1" />
+      <RadioButton layoutX="533.0" layoutY="234.0" mnemonicParsing="false" onAction="#stroke2" text="2" />
+      <RadioButton layoutX="577.0" layoutY="234.0" mnemonicParsing="false" onAction="#stroke3" text="3" />
+      <Label layoutX="357.0" layoutY="115.0" text="Width" />
+      <Label layoutX="492.0" layoutY="115.0" text="Hight" />
+      <Label layoutX="625.0" layoutY="115.0" text="Colors" />
+      <Label layoutX="390.0" layoutY="233.0" prefHeight="18.0" prefWidth="72.0" text="Stroke Width:" />
+      <Rectangle fx:id="Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#1fff29" height="200.0" layoutX="70.0" layoutY="100.0" onMouseClicked="#MouseClickHandler" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+   </children>
+</AnchorPane>

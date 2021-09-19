@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Exercise_A.Exercise_A_FXMLController">
+    <children>
+      <Pane fx:id="drawingPane" layoutX="9.0" layoutY="38.0" prefHeight="297.0" prefWidth="262.0" />
+      <Button layoutX="385.0" layoutY="221.0" mnemonicParsing="false" text="Draw" />
+      <Button layoutX="486.0" layoutY="221.0" mnemonicParsing="false" text="Clear" />
+      <TextField fx:id="YPostion" layoutX="512.0" layoutY="95.0" prefHeight="26.0" prefWidth="75.0" />
+      <TextField fx:id="Xpostion" layoutX="389.0" layoutY="95.0" prefHeight="26.0" prefWidth="75.0" />
+      <Label layoutX="357.0" layoutY="100.0" text="X:" />
+      <Label layoutX="484.0" layoutY="100.0" text="Y:" />
+      <Slider fx:id="radius" layoutX="419.0" layoutY="148.0" majorTickUnit="50.0" max="150.0" minorTickCount="2" showTickLabels="true" showTickMarks="true" />
+      <Label layoutX="357.0" layoutY="146.0" text="Raduis" />
+      <Label layoutX="329.0" layoutY="292.0" text="Background Color:" />
+      <ComboBox fx:id="comboBox" layoutX="385.0" layoutY="288.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>
