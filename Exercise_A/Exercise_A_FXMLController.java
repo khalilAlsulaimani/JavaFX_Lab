@@ -47,12 +47,12 @@ public class Exercise_A_FXMLController implements Initializable {
     @FXML
     private Slider radiusSlider;
     
-    private Circle circle(double x,double y,double radius){
+    private Circle circle(double x,double y,double rad){
         Circle circle = new Circle();
         try{
             circle.setCenterX(x);
             circle.setCenterY(y);
-            circle.setRadius(raduis);
+            circle.setRadius(rad);
         }catch (Exception e){
             System.err.println(e);
         }
