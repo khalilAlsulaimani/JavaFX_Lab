@@ -5,19 +5,29 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="725.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="Exercise_B.Exercise_B_FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Exercise_B.Exercise_B_FXMLController">
    <children>
-      <Pane fx:id="Pane" layoutX="345.0" layoutY="17.0" prefHeight="371.0" prefWidth="365.0" />
+      <Pane fx:id="Pane" layoutX="345.0" layoutY="17.0" prefHeight="371.0" prefWidth="365.0">
+         <children>
+            <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="70.0" layoutX="112.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="141.0" />
+            <Rectangle fx:id="square" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="60.0" layoutX="152.0" layoutY="263.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+            <Circle fx:id="circle" fill="DODGERBLUE" layoutX="182.0" layoutY="186.0" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
+         </children></Pane>
       <ComboBox fx:id="ShapeChoice" layoutX="137.0" layoutY="121.0" prefWidth="150.0" />
-      <RadioButton layoutX="253.0" layoutY="186.0" mnemonicParsing="false" text="Blue" />
-      <RadioButton layoutX="170.0" layoutY="186.0" mnemonicParsing="false" text="Green" />
-      <RadioButton layoutX="93.0" layoutY="186.0" mnemonicParsing="false" text="Red" />
-      <TextField layoutX="160.0" layoutY="238.0" prefHeight="26.0" prefWidth="74.0" />
-      <CheckBox fx:id="checkBox" layoutX="176.0" layoutY="300.0" mnemonicParsing="false" text="add background ? " />
+      <RadioButton layoutX="253.0" layoutY="186.0" mnemonicParsing="false" onAction="#colorBlue" selected="true" text="Blue">
+         <toggleGroup>
+            <ToggleGroup fx:id="color" />
+         </toggleGroup></RadioButton>
+      <RadioButton layoutX="170.0" layoutY="186.0" mnemonicParsing="false" onAction="#ColorGreen" text="Green" toggleGroup="$color" />
+      <RadioButton layoutX="93.0" layoutY="186.0" mnemonicParsing="false" onAction="#colorRed" text="Red" toggleGroup="$color" />
+      <TextField fx:id="strokeWidth" layoutX="160.0" layoutY="238.0" onAction="#strokeWidth" prefHeight="26.0" prefWidth="74.0" />
+      <CheckBox fx:id="backgroundColor" layoutX="176.0" layoutY="300.0" mnemonicParsing="false" onAction="#backgroundColor" text="add background ? " />
       <Label layoutX="79.0" layoutY="125.0" text="Shape :" />
       <Label layoutX="51.0" layoutY="186.0" text="Color: " />
       <Label layoutX="71.0" layoutY="242.0" text="Stroke Width:" />
