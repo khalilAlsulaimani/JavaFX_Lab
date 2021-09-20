@@ -83,6 +83,7 @@ public class Exercise_A_FXMLController implements Initializable {
     @FXML
     private void drawCircleOnClick(MouseEvent event) {
         Circle circle = circle(event.getX(),event.getY(),20);
+        circle.setFill(Paint.valueOf("blue"));
         drawingPane.getChildren().add(circle);
     }
 
