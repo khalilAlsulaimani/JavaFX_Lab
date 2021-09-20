@@ -46,6 +46,7 @@ public class Exercise_C_FXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        ObservableList<String> list = FXCollections.observableArrayList("RED","GREEN","BLUE","BLACK");
        ComboBox.setItems(list);
+       ComboBox.getSelectionModel().selectFirst();
     }
 
     @FXML

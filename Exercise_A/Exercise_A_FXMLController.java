@@ -77,6 +77,7 @@ public class Exercise_A_FXMLController implements Initializable {
         
         ObservableList<String> list = FXCollections.observableArrayList("White","Gray","Blue");
         comboBox.setItems(list);
+        comboBox.getSelectionModel().selectFirst();
         
     }    
 
