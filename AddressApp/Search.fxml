@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddressApp.SearchController">
+   <children>
+      <Label layoutX="58.0" layoutY="164.0" prefHeight="18.0" prefWidth="150.0" text="Enter the Contact Name :" />
+      <TextField fx:id="searchName" layoutX="226.0" layoutY="160.0" />
+      <Button layoutX="419.0" layoutY="160.0" mnemonicParsing="false" onAction="#Search" text="Search" />
+      <Button layoutX="226.0" layoutY="235.0" mnemonicParsing="false" onAction="#back" text="Back" />
+   </children>
+</AnchorPane>
