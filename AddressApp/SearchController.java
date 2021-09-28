@@ -104,21 +104,18 @@ public class SearchController implements Initializable {
         
        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddressBook.fxml"));
        ((Node)event.getSource()).getScene().getWindow().hide();
-       
+        Parent root = loader.load();
         AddressBookController scene1contr = loader.getController();
         
         
-        System.out.println(names.isEmpty() & numbers.isEmpty());
         
         
-        if( ((names.size()>1) & (numbers.size()>0)) ){
             System.out.println("retunred");
             scene1contr.getInfo(names, numbers);
-        }
+        
         
        
-        Parent root = loader.load();
-       
+        
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
