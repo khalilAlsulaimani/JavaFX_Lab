@@ -50,8 +50,10 @@ public class AddressBookController implements Initializable {
         for(int i =0;i<ContactNameLists.size();i++){
             ContactNameList.getItems().add( ContactNameLists.get(i).toString() );
         }
+             System.out.print(mobileLists.toString());
         for(int i =0;i<ContactNameLists.size();i++){
             mobileList.getItems().add(mobileLists.get(i).toString());
+           
         }
                
     }

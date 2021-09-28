@@ -44,15 +44,20 @@ public class SearchController implements Initializable {
     
     public void getListView(ListView contactNameLists, ListView mobileLists){
          
-            names.addAll(contactNameLists.getItems().toString());
-            numbers.addAll(mobileLists.getItems().toString());
-            System.out.println(names.toString());
+            names.addAll(contactNameLists.getItems().toString().replace("[","").replace("]",""));
+            numbers.addAll(mobileLists.getItems().toString().replace("[","").replace("]",""));
+            System.out.println(names.get(0));
+            System.out.println(numbers.get(0));
+            
+
 
         
        
     }
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -63,10 +68,13 @@ public class SearchController implements Initializable {
 
     @FXML
     private void Search(ActionEvent event) throws IOException {
-
-        if(names.contains(searchName)){
+        System.out.println(searchName.getText());
+        
+        if(names.contains(searchName.getText())){
             for(int i=0;i<names.size();i++){
-                if(names.get(i).equals(searchName)){
+                System.out.println(names.get(i));
+                if(names.get(i).equalsIgnoreCase(searchName.getText())){
+                    
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("FoundWindow.fxml"));
                     Parent root = loader.load();
                     FoundWindowController foundWindow = loader.getController();
@@ -99,7 +107,12 @@ public class SearchController implements Initializable {
        
         AddressBookController scene1contr = loader.getController();
         
-        if((names.isEmpty() & numbers.isEmpty())){
+        
+        System.out.println(names.isEmpty() & numbers.isEmpty());
+        
+        
+        if( ((names.size()>1) & (numbers.size()>0)) ){
+            System.out.println("retunred");
             scene1contr.getInfo(names, numbers);
         }
         
