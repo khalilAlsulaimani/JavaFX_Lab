@@ -67,9 +67,18 @@ public class AddressBookController implements Initializable {
 
     @FXML
     private void deleteEntry(ActionEvent event) {
-        ContactNameList.getSelectionModel().clearSelection();
-        mobileList.getSelectionModel().clearSelection();
-    }
+        int contactIndex =ContactNameList.getSelectionModel().getSelectedIndex();
+        int NumberIndex = mobileList.getSelectionModel().getSelectedIndex();
+        if(contactIndex >-1){
+            ContactNameList.getItems().remove(contactIndex);
+        }
+        
+        if(NumberIndex>-1){
+            mobileList.getItems().remove(NumberIndex);
+
+        }
+        
+    } 
 
     @FXML
     private void search(ActionEvent event) throws IOException {

@@ -30,98 +30,80 @@ public class SearchController implements Initializable {
 
     @FXML
     private TextField searchName;
-    
-   
-   @FXML
+
+    @FXML
     private ObservableList<String> names = FXCollections.observableArrayList();
-   @FXML
+    @FXML
     private ObservableList<String> numbers = FXCollections.observableArrayList();
-    
-   
-    
-    
-    
-    
-    public void getListView(ListView contactNameLists, ListView mobileLists){
-         
-            names.addAll(contactNameLists.getItems().toString().replace("[","").replace("]",""));
-            numbers.addAll(mobileLists.getItems().toString().replace("[","").replace("]",""));
-            System.out.println(names.get(0));
-            System.out.println(numbers.get(0));
-            
 
+    public void getListView(ListView contactNameLists, ListView mobileLists) {
 
-        
-       
+        names.addAll(contactNameLists.getItems().toString().replace("[", "").replace("]", ""));
+        numbers.addAll(mobileLists.getItems().toString().replace("[", "").replace("]", ""));
+        System.out.println(names.get(0));
+        System.out.println(numbers.get(0));
+
     }
+
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-       
-    }    
+
+    }
 
     @FXML
     private void Search(ActionEvent event) throws IOException {
         System.out.println(searchName.getText());
-        
-        if(names.contains(searchName.getText())){
-            for(int i=0;i<names.size();i++){
+
+        if (names.contains(searchName.getText())) {
+            for (int i = 0; i < names.size(); i++) {
                 System.out.println(names.get(i));
-                if(names.get(i).equalsIgnoreCase(searchName.getText())){
-                    
+                if (names.get(i).equalsIgnoreCase(searchName.getText())) {
+
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("FoundWindow.fxml"));
                     Parent root = loader.load();
                     FoundWindowController foundWindow = loader.getController();
-                    foundWindow.getInfo(names.get(i) , numbers.get(i));
+                    foundWindow.getInfo(names.get(i), numbers.get(i));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
                     stage.show();
-                    
-                    
+
                 }
             }
-        }else{
+        } else {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("NotFoundWindow.fxml"));
-                    Parent root = loader.load();
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-            
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
         }
-        
+
     }
 
     @FXML
     private void back(ActionEvent event) throws IOException {
-        
-       FXMLLoader loader = new FXMLLoader(getClass().getResource("AddressBook.fxml"));
-       ((Node)event.getSource()).getScene().getWindow().hide();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddressBook.fxml"));
+        ((Node) event.getSource()).getScene().getWindow().hide();
         Parent root = loader.load();
         AddressBookController scene1contr = loader.getController();
-        
-        
-        
-        
-            System.out.println("retunred");
-            scene1contr.getInfo(names, numbers);
-        
-        
-       
-        
+
+        scene1contr.getInfo(names, numbers);
+
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        
-       
+
     }
-    
+
 }
