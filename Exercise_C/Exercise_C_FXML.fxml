@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
@@ -14,9 +15,12 @@
       <TextField fx:id="hight" layoutX="541.0" layoutY="110.0" onAction="#changeHight" prefHeight="26.0" prefWidth="72.0" />
       <ComboBox fx:id="ComboBox" layoutX="676.0" layoutY="110.0" onAction="#changeColor" prefHeight="26.0" prefWidth="102.0" />
       <CheckBox layoutX="504.0" layoutY="182.0" mnemonicParsing="false" onAction="#stroke" text="Add Stroke" />
-      <RadioButton layoutX="475.0" layoutY="234.0" mnemonicParsing="false" onAction="#stroke1" text="1" />
-      <RadioButton layoutX="533.0" layoutY="234.0" mnemonicParsing="false" onAction="#stroke2" text="2" />
-      <RadioButton layoutX="577.0" layoutY="234.0" mnemonicParsing="false" onAction="#stroke3" text="3" />
+      <RadioButton layoutX="464.0" layoutY="234.0" mnemonicParsing="false" onAction="#stroke1" text="1">
+         <toggleGroup>
+            <ToggleGroup fx:id="stroke" />
+         </toggleGroup></RadioButton>
+      <RadioButton layoutX="533.0" layoutY="234.0" mnemonicParsing="false" onAction="#stroke2" text="2" toggleGroup="$stroke" />
+      <RadioButton layoutX="577.0" layoutY="234.0" mnemonicParsing="false" onAction="#stroke3" text="3" toggleGroup="$stroke" />
       <Label layoutX="357.0" layoutY="115.0" text="Width" />
       <Label layoutX="492.0" layoutY="115.0" text="Hight" />
       <Label layoutX="625.0" layoutY="115.0" text="Colors" />
