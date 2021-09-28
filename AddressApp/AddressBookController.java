@@ -5,6 +5,8 @@
  */
 package AddressApp;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -37,6 +40,12 @@ public class AddressBookController implements Initializable {
     private ListView<String> ContactNameList;
     @FXML
     private ListView<String> mobileList;
+    @FXML
+    private Label emptyFeildMessgae;
+    @FXML
+    private Label alreadyAdded;
+    @FXML
+    private Label invalidNumber;
 
     /**
      * Initializes the controller class.
@@ -44,6 +53,7 @@ public class AddressBookController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
     }
     
     public void getInfo(ObservableList ContactNameLists ,ObservableList mobileLists ){
@@ -60,22 +70,38 @@ public class AddressBookController implements Initializable {
 
     @FXML
     private void addEntry() {
-        String fullName = firstName.getText() +" "+ lastName.getText();
-        ContactNameList.getItems().add(fullName);
-        mobileList.getItems().add(mobileNumber.getText());
+        String fullName =firstName.getText() +" "+ lastName.getText();
+        emptyFeildMessgae.setText("");
+        invalidNumber.setText("");
+        alreadyAdded.setText("");
+        if(firstName.getText().equals("") || lastName.getText().equals("") || mobileNumber.getText().equals("") ){
+            emptyFeildMessgae.setText("empty textfeild detected ");
+            
+        }else if(mobileNumber.getText().length()!=10 ){
+            invalidNumber.setText("invalid number , number of digits must be 10");
+            
+            
+        }else if(ContactNameList.getItems().contains(fullName)){
+            alreadyAdded.setText("invalid contact already added into list");
+        }else{
+            ContactNameList.getItems().add(fullName);
+            mobileList.getItems().add(mobileNumber.getText());
+            
+        }
+       
     }
 
     @FXML
     private void deleteEntry(ActionEvent event) {
         int contactIndex =ContactNameList.getSelectionModel().getSelectedIndex();
         int NumberIndex = mobileList.getSelectionModel().getSelectedIndex();
+        
         if(contactIndex >-1){
             ContactNameList.getItems().remove(contactIndex);
         }
         
         if(NumberIndex>-1){
             mobileList.getItems().remove(NumberIndex);
-
         }
         
     } 

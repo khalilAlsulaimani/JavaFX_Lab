@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -31,10 +32,10 @@ public class SearchController implements Initializable {
     @FXML
     private TextField searchName;
 
-    @FXML
     private ObservableList<String> names = FXCollections.observableArrayList();
-    @FXML
     private ObservableList<String> numbers = FXCollections.observableArrayList();
+    @FXML
+    private Label empryFeild;
 
     public void getListView(ListView contactNameLists, ListView mobileLists) {
 
@@ -59,32 +60,34 @@ public class SearchController implements Initializable {
 
     @FXML
     private void Search(ActionEvent event) throws IOException {
-        System.out.println(searchName.getText());
-
-        if (names.contains(searchName.getText())) {
-            for (int i = 0; i < names.size(); i++) {
-                System.out.println(names.get(i));
-                if (names.get(i).equalsIgnoreCase(searchName.getText())) {
-
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("FoundWindow.fxml"));
-                    Parent root = loader.load();
-                    FoundWindowController foundWindow = loader.getController();
-                    foundWindow.getInfo(names.get(i), numbers.get(i));
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-
-                }
-            }
+        if (searchName.getText().equals("")) {
+            empryFeild.setText("empty feild detacted");
         } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("NotFoundWindow.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            if (names.contains(searchName.getText())) {
+                for (int i = 0; i < names.size(); i++) {
+                    System.out.println(names.get(i));
+                    if (names.get(i).equalsIgnoreCase(searchName.getText())) {
 
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("FoundWindow.fxml"));
+                        Parent root = loader.load();
+                        FoundWindowController foundWindow = loader.getController();
+                        foundWindow.getInfo(names.get(i), numbers.get(i));
+                        Stage stage = new Stage();
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+
+                    }
+                }
+            } else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("NotFoundWindow.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+
+            }
         }
 
     }
