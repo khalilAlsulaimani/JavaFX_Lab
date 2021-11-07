@@ -17,6 +17,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -28,7 +29,7 @@ import javafx.scene.shape.Rectangle;
  */
 public class Exercise_C_FXMLController implements Initializable {
     
-    private boolean stroke;
+    private boolean isStroke;
     
     @FXML
     private Rectangle Rectangle;
@@ -38,6 +39,10 @@ public class Exercise_C_FXMLController implements Initializable {
     private TextField width;
     @FXML
     private TextField hight;
+    @FXML
+    private CheckBox strokeCheckBox;
+    @FXML
+    private ToggleGroup stroke;
 
     /**
      * Initializes the controller class.
@@ -83,15 +88,14 @@ public class Exercise_C_FXMLController implements Initializable {
         
     }
 
-    @FXML
     private void stroke(ActionEvent event) {
-        stroke = true;
+        isStroke = true;
         
     }
 
     @FXML
     private void stroke1(ActionEvent event) {
-        if(stroke){
+        if(strokeCheckBox.isSelected()){
             Rectangle.setStrokeWidth(1);
         }
         
@@ -100,7 +104,7 @@ public class Exercise_C_FXMLController implements Initializable {
 
     @FXML
     private void stroke2(ActionEvent event) {
-       if(stroke){
+       if(strokeCheckBox.isSelected()){
             Rectangle.setStrokeWidth(2);
         }
 
@@ -108,7 +112,7 @@ public class Exercise_C_FXMLController implements Initializable {
 
     @FXML
     private void stroke3(ActionEvent event) {
-        if(stroke){
+        if(strokeCheckBox.isSelected()){
             Rectangle.setStrokeWidth(3);
         }
     }

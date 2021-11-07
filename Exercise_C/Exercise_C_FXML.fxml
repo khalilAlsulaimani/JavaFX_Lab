@@ -14,7 +14,7 @@
       <TextField fx:id="width" layoutX="406.0" layoutY="110.0" onAction="#changeWidth" prefHeight="26.0" prefWidth="72.0" />
       <TextField fx:id="hight" layoutX="541.0" layoutY="110.0" onAction="#changeHight" prefHeight="26.0" prefWidth="72.0" />
       <ComboBox fx:id="ComboBox" layoutX="676.0" layoutY="110.0" onAction="#changeColor" prefHeight="26.0" prefWidth="102.0" />
-      <CheckBox layoutX="504.0" layoutY="182.0" mnemonicParsing="false" onAction="#stroke" text="Add Stroke" />
+      <CheckBox fx:id="strokeCheckBox" layoutX="504.0" layoutY="182.0" mnemonicParsing="false" text="Add Stroke" />
       <RadioButton layoutX="464.0" layoutY="234.0" mnemonicParsing="false" onAction="#stroke1" text="1">
          <toggleGroup>
             <ToggleGroup fx:id="stroke" />
