@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="412.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddressApp.AddressBookController">
+<AnchorPane id="AnchorPane" prefHeight="412.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Lab5.AddressBook2Controller">
    <children>
       <ListView fx:id="ContactNameList" editable="true" layoutX="29.0" layoutY="53.0" prefHeight="254.0" prefWidth="146.0">
          <padding>

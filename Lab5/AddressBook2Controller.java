@@ -9,7 +9,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +21,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import java.sql.ResultSet;
+import javafx.collections.FXCollections;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -28,7 +33,7 @@ import javafx.stage.Stage;
  *
  * @author alsul
  */
-public class AddressBookController implements Initializable {
+public class AddressBook2Controller implements Initializable {
 
     @FXML
     private TextField firstName;
@@ -47,79 +52,92 @@ public class AddressBookController implements Initializable {
     @FXML
     private Label invalidNumber;
 
+    private final PeopleQuries personQuries = new PeopleQuries();
+
+    private final ObservableList<String> names = FXCollections.observableArrayList();
+    private final ObservableList<String> numbers = FXCollections.observableArrayList();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        
-    }
-    
-    public void getInfo(ObservableList ContactNameLists ,ObservableList mobileLists ){
-        for(int i =0;i<ContactNameLists.size();i++){
-            ContactNameList.getItems().add(0,ContactNameLists.get(i).toString() );
-        }
-             System.out.print(mobileLists.toString());
-        for(int i =0;i<ContactNameLists.size();i++){
-            mobileList.getItems().add(0,mobileLists.get(i).toString());
-           
-        }
-               
+        ContactNameList.setItems(names);
+        mobileList.setItems(numbers);
+
+        ContactNameList.getSelectionModel().selectedItemProperty().addListener(
+                (observaleValue, oldValue, newValue) -> {
+                    displayContact(newValue);
+                });
+
+        mobileList.getSelectionModel().selectedItemProperty().addListener(
+                (observaleValue, oldValue, newValue) -> {
+                    displayNumber(newValue);
+                });
+
     }
 
     @FXML
     private void addEntry() {
-        String fullName =firstName.getText() +" "+ lastName.getText();
         emptyFeildMessgae.setText("");
         invalidNumber.setText("");
         alreadyAdded.setText("");
-        if(firstName.getText().equals("") || lastName.getText().equals("") || mobileNumber.getText().equals("") ){
+
+        if (firstName.getText().equals("") || lastName.getText().equals("") || mobileNumber.getText().equals("")) {
             emptyFeildMessgae.setText("empty textfeild detected ");
-            
-        }else if(mobileNumber.getText().length()!=10 ){
+
+        } else if (mobileNumber.getText().length() + 1 != 10) {
             invalidNumber.setText("invalid number , number of digits must be 10");
-            
-            
-        }else if(ContactNameList.getItems().contains(fullName)){
+
+        } else if (personQuries.isInDB(Integer.parseInt(mobileNumber.getText()))) {
             alreadyAdded.setText("invalid contact already added into list");
-        }else{
-            ContactNameList.getItems().add(fullName);
-            mobileList.getItems().add(mobileNumber.getText());
-            
+        } else {
+            personQuries.addPeople(firstName.getText(), lastName.getText(), Integer.parseInt(mobileNumber.getText()));
+            names.add(firstName.getText()+" "+lastName.getText());
+            numbers.add(mobileNumber.getText());
+
         }
-       
+
     }
 
     @FXML
     private void deleteEntry(ActionEvent event) {
-        int contactIndex =ContactNameList.getSelectionModel().getSelectedIndex();
+        int contactIndex = ContactNameList.getSelectionModel().getSelectedIndex();
         int NumberIndex = mobileList.getSelectionModel().getSelectedIndex();
-        
-        if(contactIndex >-1 && NumberIndex>-1 ){
+
+        if (contactIndex > -1 && NumberIndex > -1) {
             ContactNameList.getItems().remove(contactIndex);
             mobileList.getItems().remove(NumberIndex);
         }
-        
-        
-        
-    } 
+
+    }
 
     @FXML
     private void search(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Search.fxml"));
-        ((Node)event.getSource()).getScene().getWindow().hide();
-        
+        ((Node) event.getSource()).getScene().getWindow().hide();
+
         Parent root = loader.load();
         SearchController scene2contr = loader.getController();
-        scene2contr.getListView(ContactNameList,mobileList);
-        
+        scene2contr.getListView(ContactNameList, mobileList);
+
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        
-        
+
     }
-    
+
+    private void displayContact(String people) {
+
+        ContactNameList.getItems().add(people);
+
+    }
+
+    private void displayNumber(String number) {
+
+        mobileList.getItems().add(number);
+
+    }
+
 }

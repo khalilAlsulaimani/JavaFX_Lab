@@ -94,13 +94,9 @@ public class SearchController implements Initializable {
     @FXML
     private void back(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddressBook.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddressBook2.fxml"));
         ((Node) event.getSource()).getScene().getWindow().hide();
         Parent root = loader.load();
-        AddressBookController scene1contr = loader.getController();
-
-        scene1contr.getInfo(names, numbers);
-
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
