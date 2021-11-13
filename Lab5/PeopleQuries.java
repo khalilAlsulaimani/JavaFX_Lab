@@ -19,7 +19,9 @@ import java.util.ArrayList;
  */
 public class PeopleQuries {
 
-    private static final String URL = "jdbc:derby:D:\\db-derby-10.15.2.0-bin\\lab5DB;create=true;";
+    private static final String URL = "jdbc:mysql://localhost:3306/addressappdb";
+    private final String user="root";
+    private final String pass="3638";
     private Connection connection;
 
     private PreparedStatement selectAllPeople;
@@ -28,7 +30,7 @@ public class PeopleQuries {
 
     public PeopleQuries() {
         try {
-            connection = DriverManager.getConnection(URL);
+            connection = DriverManager.getConnection(URL,user,pass);
 
             selectAllPeople = connection.prepareStatement("SELECT * FROM PEOPLE");
 

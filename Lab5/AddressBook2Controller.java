@@ -22,6 +22,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import java.sql.ResultSet;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -54,27 +55,14 @@ public class AddressBook2Controller implements Initializable {
 
     private final PeopleQuries personQuries = new PeopleQuries();
 
-    private final ObservableList<String> names = FXCollections.observableArrayList();
-    private final ObservableList<String> numbers = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ContactNameList.setItems(names);
-        mobileList.setItems(numbers);
 
-        ContactNameList.getSelectionModel().selectedItemProperty().addListener(
-                (observaleValue, oldValue, newValue) -> {
-                    displayContact(newValue);
-                });
-
-        mobileList.getSelectionModel().selectedItemProperty().addListener(
-                (observaleValue, oldValue, newValue) -> {
-                    displayNumber(newValue);
-                });
-
+        
     }
 
     @FXML
@@ -93,8 +81,7 @@ public class AddressBook2Controller implements Initializable {
             alreadyAdded.setText("invalid contact already added into list");
         } else {
             personQuries.addPeople(firstName.getText(), lastName.getText(), Integer.parseInt(mobileNumber.getText()));
-            names.add(firstName.getText()+" "+lastName.getText());
-            numbers.add(mobileNumber.getText());
+            
 
         }
 
@@ -128,16 +115,5 @@ public class AddressBook2Controller implements Initializable {
 
     }
 
-    private void displayContact(String people) {
-
-        ContactNameList.getItems().add(people);
-
-    }
-
-    private void displayNumber(String number) {
-
-        mobileList.getItems().add(number);
-
-    }
-
+  
 }

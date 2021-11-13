@@ -58,11 +58,11 @@ public class AddressBookController implements Initializable {
     
     public void getInfo(ObservableList ContactNameLists ,ObservableList mobileLists ){
         for(int i =0;i<ContactNameLists.size();i++){
-            ContactNameList.getItems().add(0,ContactNameLists.get(i).toString() );
+            ContactNameList.getItems().add(ContactNameLists.get(i).toString() );
         }
              System.out.print(mobileLists.toString());
         for(int i =0;i<ContactNameLists.size();i++){
-            mobileList.getItems().add(0,mobileLists.get(i).toString());
+            mobileList.getItems().add(mobileLists.get(i).toString());
            
         }
                
