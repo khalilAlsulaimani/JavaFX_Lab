@@ -55,6 +55,7 @@ public class AddressBook2Controller implements Initializable {
 
     private final PeopleQuries personQuries = new PeopleQuries();
 
+    private ObservableList<People> people = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
@@ -62,26 +63,33 @@ public class AddressBook2Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        
+        List<People> peoples = personQuries.getAllPeople();
+        for (int i = 0; i < peoples.size(); i++) {
+            people.add(peoples.get(i));
+            ContactNameList.getItems().add(peoples.get(i).fullName());
+            mobileList.getItems().add(String.valueOf(peoples.get(i).getPhoneNumber()));
+
+        }
     }
 
     @FXML
     private void addEntry() {
+        String fullName = firstName.getText() + " " + lastName.getText();
         emptyFeildMessgae.setText("");
         invalidNumber.setText("");
         alreadyAdded.setText("");
-
         if (firstName.getText().equals("") || lastName.getText().equals("") || mobileNumber.getText().equals("")) {
-            emptyFeildMessgae.setText("empty textfeild detected ");
+            emptyFeildMessgae.setText("Empty Textfeild Detected ");
 
-        } else if (mobileNumber.getText().length() + 1 != 10) {
-            invalidNumber.setText("invalid number , number of digits must be 10");
+        } else if (mobileNumber.getText().length() != 10) {
+            invalidNumber.setText("Invalid Number , Number Of Digits Must Be 10");
 
         } else if (personQuries.isInDB(Integer.parseInt(mobileNumber.getText()))) {
-            alreadyAdded.setText("invalid contact already added into list");
+            alreadyAdded.setText("Invalid Contact Already Added Into List");
         } else {
             personQuries.addPeople(firstName.getText(), lastName.getText(), Integer.parseInt(mobileNumber.getText()));
-            
+            ContactNameList.getItems().add(fullName);
+            mobileList.getItems().add(mobileNumber.getText());
 
         }
 
@@ -94,6 +102,8 @@ public class AddressBook2Controller implements Initializable {
 
         if (contactIndex > -1 && NumberIndex > -1) {
             ContactNameList.getItems().remove(contactIndex);
+
+            personQuries.deletePeople(Integer.parseInt(mobileList.getItems().get(NumberIndex)));
             mobileList.getItems().remove(NumberIndex);
         }
 
@@ -101,12 +111,11 @@ public class AddressBook2Controller implements Initializable {
 
     @FXML
     private void search(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Search.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Search2.fxml"));
         ((Node) event.getSource()).getScene().getWindow().hide();
 
         Parent root = loader.load();
-        SearchController scene2contr = loader.getController();
-        scene2contr.getListView(ContactNameList, mobileList);
+        
 
         Stage stage = new Stage();
         Scene scene = new Scene(root);
@@ -115,5 +124,4 @@ public class AddressBook2Controller implements Initializable {
 
     }
 
-  
 }

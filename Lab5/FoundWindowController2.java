@@ -16,7 +16,7 @@ import javafx.scene.control.Label;
  *
  * @author alsul
  */
-public class FoundWindowController implements Initializable {
+public class FoundWindowController2 implements Initializable {
 
     @FXML
     private Label fullName;

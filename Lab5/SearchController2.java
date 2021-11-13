@@ -6,6 +6,7 @@
 package Lab5;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,7 +27,7 @@ import javafx.stage.Stage;
  *
  * @author alsul
  */
-public class SearchController implements Initializable {
+public class SearchController2 implements Initializable {
 
     @FXML
     private TextField searchName;
@@ -35,6 +36,9 @@ public class SearchController implements Initializable {
     private ObservableList<String> numbers = FXCollections.observableArrayList();
     @FXML
     private Label empryFeild;
+    
+    private final PeopleQuries personQuries = new PeopleQuries();
+    private ObservableList<People> people = FXCollections.observableArrayList();
 
     public void getListView(ListView contactNameLists, ListView mobileLists) {
 
@@ -54,22 +58,29 @@ public class SearchController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+          List<People> peoples = personQuries.getAllPeople();
+        for (int i = 0; i < peoples.size(); i++) {
+            people.add(peoples.get(i));
+            names.add(people.get(i).fullName() );
+            numbers.add(String.valueOf(people.get(i).getPhoneNumber()));
+
+        }
 
     }
 
     @FXML
     private void Search(ActionEvent event) throws IOException {
         if (searchName.getText().equals("")) {
-            empryFeild.setText("empty feild detacted");
+            empryFeild.setText("Empty Field Detacted");
         } else {
             if (names.contains(searchName.getText())) {
                 for (int i = 0; i < names.size(); i++) {
                     System.out.println(names.get(i));
                     if (names.get(i).equalsIgnoreCase(searchName.getText())) {
 
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("FoundWindow.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("FoundWindow2.fxml"));
                         Parent root = loader.load();
-                        FoundWindowController foundWindow = loader.getController();
+                        FoundWindowController2 foundWindow = loader.getController();
                         foundWindow.getInfo(names.get(i), numbers.get(i));
                         Stage stage = new Stage();
                         Scene scene = new Scene(root);
@@ -79,7 +90,7 @@ public class SearchController implements Initializable {
                     }
                 }
             } else {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("NotFoundWindow.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("NotFoundWindow2.fxml"));
                 Parent root = loader.load();
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);

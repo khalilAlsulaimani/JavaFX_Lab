@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author alsul
  */
-public class NotFoundWindowController implements Initializable {
+public class NotFoundWindowController2 implements Initializable {
 
     /**
      * Initializes the controller class.
