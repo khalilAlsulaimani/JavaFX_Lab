@@ -84,7 +84,7 @@ public class AddressBook2Controller implements Initializable {
         } else if (mobileNumber.getText().length() != 10) {
             invalidNumber.setText("Invalid Number , Number Of Digits Must Be 10");
 
-        } else if (personQuries.isInDB(Integer.parseInt(mobileNumber.getText()))) {
+        } else if (ContactNameList.getItems().contains(fullName)) {
             alreadyAdded.setText("Invalid Contact Already Added Into List");
         } else {
             personQuries.addPeople(firstName.getText(), lastName.getText(), Integer.parseInt(mobileNumber.getText()));

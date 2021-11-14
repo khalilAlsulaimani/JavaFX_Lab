@@ -25,7 +25,7 @@ public class FileReadAndCount {
     public static void main(String[] args) throws IOException {
 
         List<Pattern> patterns = new ArrayList<>();
-        Pattern wordSplit = Pattern.compile("[ \n\t\r,.;:(){}\"]");
+        Pattern wordSplit = Pattern.compile("[\\s\\d\n\t\r /-_,.;:(){}'\"]");
         Pattern letterSplit = Pattern.compile("");
 
         Map<String, Long> wordCounts
